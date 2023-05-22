@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoolHQAssignment.Services.Assembly
 {
-    internal class AssembleCar
+    public class AssembleCar
     {
         IAssemblyLine car = new Car();
 
