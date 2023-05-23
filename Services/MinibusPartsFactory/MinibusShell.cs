@@ -11,6 +11,7 @@ namespace CoolHQAssignment.Services.MinibusPartsFactory
     {
         public string VehiclePart()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(3));
             return "Minibus Shell";
         }
     }

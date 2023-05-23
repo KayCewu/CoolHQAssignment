@@ -14,7 +14,12 @@ namespace CoolHQAssignment.Services.Assembly
 
         public void Assemble()
         {
-            IWheel minibusWheel = minibus.CreateWheel();
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+
+            IWheel firstWheel = minibus.CreateWheel();
+            IWheel secondWheel = minibus.CreateWheel();
+            IWheel thirdWheel = minibus.CreateWheel();
+            IWheel fourthWheel = minibus.CreateWheel();
             IShell minibusShell = minibus.CreateShell();
             ITrim minibusTrim = minibus.CreateTrim();
             IChassis minibusChassis = minibus.CreateChassis();
