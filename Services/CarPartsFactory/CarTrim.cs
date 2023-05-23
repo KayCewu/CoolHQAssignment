@@ -11,6 +11,7 @@ namespace CoolHQAssignment.Services.CarPartsFactory
     {
         public string VehiclePart()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             return "Car Trim";
         }
     }

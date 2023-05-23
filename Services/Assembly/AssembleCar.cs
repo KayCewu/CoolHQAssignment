@@ -15,8 +15,13 @@ namespace CoolHQAssignment.Services.Assembly
 
         public void Assemble()
         {
-            IWheel carWheel = car.CreateWheel();
-            IChassis carChasis = car.CreateChassis();
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+
+            IWheel firstWheel = car.CreateWheel();
+            IWheel secondWheel = car.CreateWheel();
+            IWheel thirdWheel = car.CreateWheel();
+            IWheel fourthWheel = car.CreateWheel();
+            IChassis carChassis = car.CreateChassis();
             ITrim carTrim = car.CreateTrim();
             IShell carShell = car.CreateShell();
         }
