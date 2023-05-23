@@ -18,12 +18,21 @@ namespace CoolHQAssignment.Services.Assembly
             Thread.Sleep(TimeSpan.FromSeconds(2));
 
             IWheel firstWheel = car.CreateWheel();
+            firstWheel.VehiclePart();
             IWheel secondWheel = car.CreateWheel();
+            secondWheel.VehiclePart();
             IWheel thirdWheel = car.CreateWheel();
+            thirdWheel.VehiclePart();
             IWheel fourthWheel = car.CreateWheel();
+            fourthWheel.VehiclePart();
             IChassis carChassis = car.CreateChassis();
+            carChassis.VehiclePart();
             ITrim carTrim = car.CreateTrim();
+            carTrim.VehiclePart();
             IShell carShell = car.CreateShell();
+            carShell.VehiclePart();
         }
+
+        
     }
 }
