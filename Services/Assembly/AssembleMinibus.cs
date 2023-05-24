@@ -1,5 +1,4 @@
 ﻿using CoolHQAssignment.Data;
-using CoolHQAssignment.Services.MinibusPartsFactory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +11,34 @@ namespace CoolHQAssignment.Services.Assembly
     {
         IAssemblyLine minibus = new Minibus();
 
-        public void Assemble()
+        public string[] Assemble(string vehicleType)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(3));
+            Thread.Sleep(TimeSpan.FromSeconds(2));
 
             IWheel firstWheel = minibus.CreateWheel();
             IWheel secondWheel = minibus.CreateWheel();
             IWheel thirdWheel = minibus.CreateWheel();
             IWheel fourthWheel = minibus.CreateWheel();
-            IShell minibusShell = minibus.CreateShell();
-            ITrim minibusTrim = minibus.CreateTrim();
-            IChassis minibusChassis = minibus.CreateChassis();
+            IChassis carChassis = minibus.CreateChassis();
+            ITrim carTrim = minibus.CreateTrim();
+            IShell carShell = minibus.CreateShell();
+
+            string assembled = $"Performing final assembly of {vehicleType}";
+            string sendVehicle = $"Sent {vehicleType} for painting";
+
+            string[] assemblyLine = {
+                firstWheel.CreateFirstWheel(vehicleType),
+                secondWheel.CreateSecondWheel(vehicleType),
+                thirdWheel.CreateThirdWheel(vehicleType),
+                fourthWheel.CreateFourthWheel(vehicleType),
+                carChassis.VehiclePart(vehicleType),
+                carTrim.VehiclePart(vehicleType),
+                carShell.VehiclePart(vehicleType),
+                assembled,
+                sendVehicle
+            };
+
+            return assemblyLine;
         }
     }
 }

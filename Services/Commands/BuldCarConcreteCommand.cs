@@ -6,18 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoolHQAssignment
+namespace CoolHQAssignment.Services.Commands
 {
     public class BuldCarConcreteCommand : ICommandBase
     {
-        private AssembleCar _assembleCar;
-        public BuldCarConcreteCommand(AssembleCar assembleCar)
+        private Reciever reciever;
+        public BuldCarConcreteCommand(Reciever r)
         {
-            _assembleCar = assembleCar;
+            reciever = r;
         }
-        public void Execute()
+        public void Execute(string vehicleType)
         {
-            _assembleCar.Assemble();
+            reciever.carMaker(vehicleType);
         }
     }
 }

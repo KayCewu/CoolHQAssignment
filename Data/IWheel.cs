@@ -8,6 +8,9 @@ namespace CoolHQAssignment.Data
 {
     public interface IWheel
     {
-        string VehiclePart();
+        string CreateSecondWheel(string vehicleType);
+        string CreateFirstWheel(string vehicleType);
+        string CreateThirdWheel(string vehicleType);
+        string CreateFourthWheel(string vehicleType);
     }
 }

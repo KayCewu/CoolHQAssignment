@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoolHQAssignment.Services.MinibusPartsFactory
+namespace CoolHQAssignment.Data.Minibus
 {
     class MinibusShell : IShell
     {
-        public string VehiclePart()
+        public string VehiclePart(string vehicleType)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(3));
-            return "Minibus Shell";
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            return $"Creating {vehicleType} Shell";
         }
     }
 }

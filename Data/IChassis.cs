@@ -8,6 +8,6 @@ namespace CoolHQAssignment.Data
 {
     public interface IChassis
     {
-        string VehiclePart();
+        string VehiclePart(string vehicleType);
     }
 }

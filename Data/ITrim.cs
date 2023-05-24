@@ -8,6 +8,6 @@ namespace CoolHQAssignment.Data
 {
     public interface ITrim
     {
-        string VehiclePart();
+        string VehiclePart(string vehicleType);
     }
 }

@@ -8,6 +8,6 @@ namespace CoolHQAssignment.Data
 {
     interface ICommandBase
     {
-        void Execute();
+        void Execute(string vehicleType);
     }
 }

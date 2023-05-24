@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoolHQAssignment
+namespace CoolHQAssignment.Services.Commands
 {
     class Invoker
     {
-        public Queue<ICommandBase> MinibusCommands= new Queue<ICommandBase>();
-        public Queue<ICommandBase> CarCommands= new Queue<ICommandBase>();
-        
+        /*public Queue<ICommandBase> MinibusCommands = new Queue<ICommandBase>();
+        public Queue<ICommandBase> CarCommands = new Queue<ICommandBase>();
+
         public void CarCommandsExecute()
         {
             foreach (ICommandBase x in CarCommands)
@@ -27,6 +27,18 @@ namespace CoolHQAssignment
                 MinibusCommands.Dequeue();
                 x.Execute();
             }
+        }*/
+        public ICommandBase ManufactureCar { get; set; }
+        public ICommandBase ManufactureMinibus { get; set;}
+
+        public void CarButton(string vehicleType)
+        {
+            ManufactureCar.Execute(vehicleType);
+        }
+        
+        public void MinibusButton(string vehicleType)
+        {
+            ManufactureMinibus.Execute(vehicleType);
         }
     }
 }

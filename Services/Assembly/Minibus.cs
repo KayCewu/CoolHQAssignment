@@ -1,12 +1,12 @@
 ﻿using CoolHQAssignment.Data;
-//using CoolHQAssignment.MinibusPartsFactory;
+using CoolHQAssignment.Data.Minibus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoolHQAssignment.Services.MinibusPartsFactory
+namespace CoolHQAssignment.Services.Assembly
 {
     class Minibus : IAssemblyLine
     {

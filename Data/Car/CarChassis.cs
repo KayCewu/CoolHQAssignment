@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoolHQAssignment.Services.CarPartsFactory
+namespace CoolHQAssignment.Data.Car
 {
-    class CarTrim : ITrim
+    class CarChassis : IChassis
     {
-        public string VehiclePart()
+        public string VehiclePart(string vehicleType)
         {
             Thread.Sleep(TimeSpan.FromSeconds(2));
-            return "Car Trim";
+            return $"Creating {vehicleType} Chassis";
         }
     }
 }

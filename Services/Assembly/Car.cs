@@ -1,12 +1,13 @@
 ﻿using System.Threading;
 using CoolHQAssignment.Data;
+using CoolHQAssignment.Data.Car;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoolHQAssignment.Services.CarPartsFactory
+namespace CoolHQAssignment.Services.Assembly
 {
     class Car : IAssemblyLine
     {

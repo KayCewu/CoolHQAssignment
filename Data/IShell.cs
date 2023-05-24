@@ -8,6 +8,6 @@ namespace CoolHQAssignment.Data
 {
     public interface IShell
     {
-        string VehiclePart();
+        string VehiclePart(string vehicleType);
     }
 }
