@@ -13,7 +13,7 @@ namespace CoolHQAssignment.Services.Commands
         {
             string[] assembledProduct;
             AssembleCar car = new AssembleCar();
-            if (vehicleType == "Black")
+            if (vehicleType.Contains("Black"))
                 assembledProduct = car.Assemble(vehicleType);
             else
                 assembledProduct = car.Assemble(vehicleType);
@@ -25,7 +25,7 @@ namespace CoolHQAssignment.Services.Commands
         {
             string[] assembledProduct;
             AssembleMinibus minibus = new AssembleMinibus();
-            if (vehicleType == "Black")
+            if (vehicleType.Contains("Black"))
                 assembledProduct = minibus.Assemble(vehicleType);
             else
                 assembledProduct = minibus.Assemble(vehicleType);

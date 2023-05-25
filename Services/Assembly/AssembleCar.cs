@@ -11,10 +11,14 @@ namespace CoolHQAssignment.Services.Assembly
     {
         IAssemblyLine car = new Car();
 
+        public string assembled(string vehicleType)
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            return $"Performing final assembly of {vehicleType}";
+        }
+
         public string[] Assemble(string vehicleType)
         {
-            //Thread.Sleep(TimeSpan.FromSeconds(2));
-
             IWheel firstWheel = car.CreateWheel();
             IWheel secondWheel = car.CreateWheel();
             IWheel thirdWheel = car.CreateWheel();
@@ -23,7 +27,6 @@ namespace CoolHQAssignment.Services.Assembly
             ITrim carTrim = car.CreateTrim();
             IShell carShell = car.CreateShell();
 
-            string assembled = $"Performing final assembly of {vehicleType}";
             string sendVehicle = $"Sent {vehicleType} for painting";
 
             string[] assemblyLine = {
@@ -34,8 +37,9 @@ namespace CoolHQAssignment.Services.Assembly
                 carChassis.VehiclePart(vehicleType), 
                 carTrim.VehiclePart(vehicleType), 
                 carShell.VehiclePart(vehicleType),
-                assembled,
-                sendVehicle
+                assembled(vehicleType),
+                sendVehicle,
+                "Idle"
             };
 
             return assemblyLine;

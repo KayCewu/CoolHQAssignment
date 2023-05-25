@@ -19,7 +19,7 @@ namespace CoolHQAssignment.Services
             CarWhite = "Spraying LUX1000 White";
             CarBlack = "Spraying LUX1000 Black";
             MinibusWhite = "Spraying MV500 White";
-            MinibusBlack = "Spraying Bus Black";
+            MinibusBlack = "Spraying MV500 Black";
         }
         public static Spraybooth getInstance()
         {

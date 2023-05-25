@@ -30,7 +30,7 @@ namespace CoolHQAssignment.Data.Minibus
         public string CreateFourthWheel(string vehicleType)
         {
             Thread.Sleep(TimeSpan.FromSeconds(0.5));
-            return $"Creating {vehicleType} Left Back Wheel";
+            return $"Creating {vehicleType} Left Front Wheel";
         }
     }
 }
