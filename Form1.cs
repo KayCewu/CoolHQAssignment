@@ -1,6 +1,8 @@
+using CoolHQAssignment.Data;
 using CoolHQAssignment.Services;
 using CoolHQAssignment.Services.Assembly;
 using CoolHQAssignment.Services.Commands;
+using CoolHQAssignment.Services.Spraybooth;
 using System.Diagnostics;
 using System.Net.Sockets;
 
@@ -10,6 +12,7 @@ namespace CoolHQAssignment
     {
         private Invoker invoker;
         private Reciever reciever;
+        Booth booth;
         private QueueManager sb;
 
         BuildMinibusConcreteCommand buildMinibusConcreteCommand;
@@ -30,7 +33,9 @@ namespace CoolHQAssignment
 
             buildMinibusConcreteCommand = new BuildMinibusConcreteCommand(reciever);
             buildCarConcreteCommand = new BuldCarConcreteCommand(reciever);
+            
             sb = QueueManager.Instance;
+            
             lblCarLine.Text = "Idle";
             lblCarQ.Text = "Idle";
             lblMinibusLine.Text = "Idle";
@@ -47,7 +52,10 @@ namespace CoolHQAssignment
             string VehicleColor;
             if (rdBlackCar.Checked)
             {
-                VehicleColor = "Spraying Black LUX 1000";
+                booth = new BlackCarBooth();
+                SprayColor sprayColor = booth.Spray();
+        
+                VehicleColor = sprayColor.OutputColor();
                 invoker.CarButton("Black LUX 1000");
                 tempArray = reciever.carMaker("Black LUX 1000");
 
@@ -77,7 +85,10 @@ namespace CoolHQAssignment
             }
             else if (rdWhiteCar.Checked)
             {
-                VehicleColor = "Spraying White LUX 1000";
+                booth = new WhiteCarBooth();
+                SprayColor sprayColor = booth.Spray();
+                VehicleColor = sprayColor.OutputColor();
+
                 invoker.CarButton("White LUX 1000");
                 tempArray = reciever.carMaker("White LUX 1000");
                 for (int i = 0; i < tempArray.Length; i++)
@@ -106,7 +117,10 @@ namespace CoolHQAssignment
             }
             else if (rdWhiteMini.Checked)
             {
-                VehicleColor = "Spraying White MV500";
+                booth = new WhiteMinibusBooth();
+                SprayColor sprayColor = booth.Spray();
+
+                VehicleColor = sprayColor.OutputColor();
                 invoker.MinibusButton("White MV500");
                 tempArray = reciever.minibusMaker("White MV500");
                 for (int i = 0; i < tempArray.Length; i++)
@@ -136,7 +150,10 @@ namespace CoolHQAssignment
             }
             else if (rdBlackMini.Checked)
             {
-                VehicleColor = "Spraying Black MV500";
+                booth = new BlackMinibusBooth();
+                SprayColor sprayColor = booth.Spray();
+
+                VehicleColor = sprayColor.OutputColor();
                 invoker.MinibusButton("Black MV500");
                 tempArray = reciever.minibusMaker("Black MV500");
                 for (int i = 0; i < tempArray.Length; i++)
