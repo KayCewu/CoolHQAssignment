@@ -13,7 +13,7 @@ namespace CoolHQAssignment.Services.Assembly
 
         public string assembled(string vehicleType)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(3));
+            //Thread.Sleep(TimeSpan.FromSeconds(3));
             return $"Performing final assembly of {vehicleType}";
         }
 

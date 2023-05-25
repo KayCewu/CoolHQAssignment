@@ -1,3 +1,4 @@
+using CoolHQAssignment.Services;
 using CoolHQAssignment.Services.Assembly;
 using CoolHQAssignment.Services.Commands;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ namespace CoolHQAssignment
     {
         private Invoker invoker;
         private Reciever reciever;
+        private QueueManager sb;
 
         BuildMinibusConcreteCommand buildMinibusConcreteCommand;
         BuldCarConcreteCommand buildCarConcreteCommand;
@@ -28,7 +30,7 @@ namespace CoolHQAssignment
 
             buildMinibusConcreteCommand = new BuildMinibusConcreteCommand(reciever);
             buildCarConcreteCommand = new BuldCarConcreteCommand(reciever);
-
+            sb = QueueManager.Instance;
             lblCarLine.Text = "Idle";
             lblCarQ.Text = "Idle";
             lblMinibusLine.Text = "Idle";
@@ -67,7 +69,7 @@ namespace CoolHQAssignment
                         lblSpraybooth.Invoke(new SprayCarCallBack(SprayVehicle), new object[] { "Idle", 0 });
                     }
                 }
-                CarQ--;
+                QueueManager.Instance.DecrementCarQueue();
                 if (lblCarQ.InvokeRequired)
                     lblCarQ.Invoke(new QueueCallback(CarQueueDecrement), new object[] { CarQ });
                 else
@@ -96,7 +98,7 @@ namespace CoolHQAssignment
                         lblSpraybooth.Invoke(new SprayCarCallBack(SprayVehicle), new object[] { "Idle", 0 });
                     }
                 }
-                CarQ--;
+                QueueManager.Instance.DecrementCarQueue();
                 if (lblCarQ.InvokeRequired)
                     lblCarQ.Invoke(new QueueCallback(CarQueueDecrement), new object[] { CarQ });
                 else
@@ -126,7 +128,7 @@ namespace CoolHQAssignment
                     }
 
                 }
-                MinibusQ--;
+                QueueManager.Instance.DecrementMinibusQueue();
                 if (lblMinibusQ.InvokeRequired)
                     lblMinibusQ.Invoke(new QueueCallback(MinibusQueueDecrement), new object[] { MinibusQ });
                 else
@@ -157,7 +159,7 @@ namespace CoolHQAssignment
                     }
                 }
 
-                MinibusQ--;
+                QueueManager.Instance.DecrementMinibusQueue();
                 if (lblMinibusQ.InvokeRequired)
                     lblMinibusQ.Invoke(new QueueCallback(MinibusQueueDecrement), new object[] { MinibusQ });
                 else
@@ -183,10 +185,6 @@ namespace CoolHQAssignment
         private void SetProgressLabel(string progress)
         {
             lblCarLine.Text = progress;
-            //if (progress == "Sent Black for painting")
-            //{
-            //    lblSpraybooth.Text = "Spraying Black Car";
-            //}
         }
         
         private void SprayVehicle(string CarColor, int i)
@@ -196,21 +194,36 @@ namespace CoolHQAssignment
         
         private void btnOrder_Click(object sender, EventArgs e)
         {
+            //if (rdBlackCar.Checked || rdWhiteCar.Checked)
+            //{
+            //    CarQ++;
+            //    lblCarQ.Text = CarQ.ToString();
+            //}
+            //if (rdWhiteMini.Checked || rdBlackMini.Checked)
+            //{
+            //    MinibusQ++;
+            //    lblMinibusQ.Text = MinibusQ.ToString();
+            //}
+
             if (rdBlackCar.Checked || rdWhiteCar.Checked)
             {
-                CarQ++;
-                lblCarQ.Text = CarQ.ToString();
+                QueueManager.Instance.IncrementCarQueue();
+                lblCarQ.Text = QueueManager.Instance.GetCarQueue().ToString();
             }
+
             if (rdWhiteMini.Checked || rdBlackMini.Checked)
             {
-                MinibusQ++;
-                lblMinibusQ.Text = MinibusQ.ToString();
+                QueueManager.Instance.IncrementMinibusQueue();
+                lblMinibusQ.Text = QueueManager.Instance.GetMinibusQueue().ToString();
             }
+            
             var work = new Thread(doWork);
             work.Start();
 
-            lblCarQ.Text = CarQ.ToString();
-            lblMinibusQ.Text = MinibusQ.ToString();
+            lblCarQ.Text = QueueManager.Instance.GetCarQueue().ToString();
+            lblMinibusQ.Text = QueueManager.Instance.GetMinibusQueue().ToString();
+            //lblCarQ.Text = CarQ.ToString();
+            //lblMinibusQ.Text = MinibusQ.ToString();
         }
     }
 }

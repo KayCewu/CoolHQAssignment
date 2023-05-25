@@ -11,7 +11,7 @@ namespace CoolHQAssignment.Data.Minibus
     {
         public string VehiclePart(string vehicleType)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(2));
+            //Thread.Sleep(TimeSpan.FromSeconds(2));
             return $"Creating {vehicleType} Chassis";
         }
     }

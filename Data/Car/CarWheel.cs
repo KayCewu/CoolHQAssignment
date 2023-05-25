@@ -11,25 +11,25 @@ namespace CoolHQAssignment.Data.Car
     {
         public string CreateFirstWheel(string vehicleType)
         {
-           Thread.Sleep(TimeSpan.FromSeconds(0.5));
-            return $"Create {vehicleType} Right Front Wheel";
+           //Thread.Sleep(TimeSpan.FromSeconds(0.5));
+            return $"Creating {vehicleType} Right Front Wheel";
         }
 
         public string CreateSecondWheel(string vehicleType)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(0.5));
+            //Thread.Sleep(TimeSpan.FromSeconds(0.5));
             return $"Creating {vehicleType} Right Back Wheel";
         }
 
         public string CreateThirdWheel(string vehicleType)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(0.5));
+            //Thread.Sleep(TimeSpan.FromSeconds(0.5));
             return $"Creating {vehicleType} Left Back Wheel";
         }
 
         public string CreateFourthWheel(string vehicleType)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(0.5));
+            //Thread.Sleep(TimeSpan.FromSeconds(0.5));
             return $"Creating {vehicleType} Left Front Wheel";
         }
     }
