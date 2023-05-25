@@ -13,7 +13,7 @@ namespace CoolHQAssignment.Services.Assembly
 
         public string[] Assemble(string vehicleType)
         {
-            Thread.Sleep(TimeSpan.FromSeconds(2));
+           // Thread.Sleep(TimeSpan.FromSeconds(2));
 
             IWheel firstWheel = minibus.CreateWheel();
             IWheel secondWheel = minibus.CreateWheel();
