@@ -13,6 +13,8 @@ namespace CoolHQAssignment
         BuildMinibusConcreteCommand buildMinibusConcreteCommand;
         BuldCarConcreteCommand buildCarConcreteCommand;
         private delegate void ProgressCallback(string progress);
+        private delegate void SprayCarCallBack(string Color, int i);
+        int CarQ, MinibusQ;
         public Form1()
         {
             InitializeComponent();
@@ -26,8 +28,10 @@ namespace CoolHQAssignment
         {
             invoker.ManufactureCar = new BuldCarConcreteCommand(reciever);
             invoker.ManufactureMinibus = new BuildMinibusConcreteCommand(reciever);
+            string VehicleColor;
             if (rdBlackCar.Checked)
             {
+                VehicleColor = "Black Car";
                 invoker.CarButton("Black");
                 tempArray = reciever.carMaker("Black");
 
@@ -42,9 +46,16 @@ namespace CoolHQAssignment
                         SetProgressLabel(tempArray[i]);
                     }
                     Thread.Sleep(2000);
+                    if (i == tempArray.Length-1)
+                    {
+                        lblSpraybooth.Invoke(new SprayCarCallBack(SprayVehicle), new object[] {VehicleColor, i });
+                    }
+
                 }
-            }else if(rdWhiteCar.Checked)
+            }
+            else if (rdWhiteCar.Checked)
             {
+                VehicleColor = "White Car";
                 invoker.CarButton("White");
                 tempArray = reciever.carMaker("White");
                 for (int i = 0; i < tempArray.Length; i++)
@@ -58,11 +69,16 @@ namespace CoolHQAssignment
                         SetProgressLabel(tempArray[i]);
                     }
                     Thread.Sleep(2000);
+                    if (i == tempArray.Length - 1)
+                    {
+                        lblSpraybooth.Invoke(new SprayCarCallBack(SprayVehicle), new object[] { VehicleColor, i });
+                    }
                 }
 
             }
-            else if(rdWhiteMini.Checked)
+            else if (rdWhiteMini.Checked)
             {
+                VehicleColor = "White Minibus";
                 invoker.MinibusButton("White");
                 tempArray = reciever.minibusMaker("White");
                 for (int i = 0; i < tempArray.Length; i++)
@@ -76,10 +92,16 @@ namespace CoolHQAssignment
                         SetProgressMinibus(tempArray[i]);
                     }
                     Thread.Sleep(2000);
+                    if (i == tempArray.Length - 1)
+                    {
+                        lblSpraybooth.Invoke(new SprayCarCallBack(SprayVehicle), new object[] { VehicleColor, i });
+                    }
+
                 }
             }
             else if (rdBlackMini.Checked)
             {
+                VehicleColor = "Black Minibus";
                 invoker.MinibusButton("Black");
                 tempArray = reciever.minibusMaker("Black");
                 for (int i = 0; i < tempArray.Length; i++)
@@ -87,12 +109,17 @@ namespace CoolHQAssignment
                     if (lblMinibusLine.InvokeRequired)
                     {
                         lblMinibusLine.Invoke(new ProgressCallback(SetProgressMinibus), new object[] { tempArray[i] });
+
                     }
                     else
                     {
                         SetProgressMinibus(tempArray[i]);
                     }
                     Thread.Sleep(2000);
+                    if (i == tempArray.Length - 1)
+                    {
+                        lblSpraybooth.Invoke(new SprayCarCallBack(SprayVehicle), new object[] { VehicleColor, i });
+                    }
                 }
             }
 
@@ -105,26 +132,33 @@ namespace CoolHQAssignment
 
         }
         private void SetProgressLabel(string progress)
-        { 
-                lblCarLine.Text = progress;
-            
+        {
+            lblCarLine.Text = progress;
+            //if (progress == "Sent Black for painting")
+            //{
+            //    lblSpraybooth.Text = "Spraying Black Car";
+            //}
+        }
+        private void SprayVehicle(string CarColor,int i)
+        {
+              lblSpraybooth.Text="Spraying "+CarColor;
         }
         private void btnOrder_Click(object sender, EventArgs e)
         {
             if (rdBlackCar.Checked || rdWhiteCar.Checked)
             {
-                //invoker.CarCommands.Enqueue(buildCarConcreteCommand);
-                //lblCarQ.Text = invoker.MinibusCommands.Count.ToString();
+                CarQ++;
+                lblCarQ.Text = CarQ.ToString();
+
             }
             if (rdWhiteMini.Checked || rdBlackMini.Checked)
             {
-                //invoker.MinibusCommands.Enqueue(buildMinibusConcreteCommand);
-                //lblMinibusQ.Text = invoker.MinibusCommands.Count.ToString();
+
             }
             var work = new Thread(doWork);
             work.Start();
 
-            
+
         }
     }
 }
