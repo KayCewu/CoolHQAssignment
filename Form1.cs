@@ -22,6 +22,11 @@ namespace CoolHQAssignment
             reciever = new Reciever();
             buildMinibusConcreteCommand = new BuildMinibusConcreteCommand(reciever);
             buildCarConcreteCommand = new BuldCarConcreteCommand(reciever);
+            lblCarLine.Text = string.Empty;
+            lblCarQ.Text= string.Empty;
+            lblMinibusLine.Text = string.Empty;
+            lblMinibusQ.Text = string.Empty;
+            lblSpraybooth.Text = string.Empty;
 
         }
         private void doWork()
